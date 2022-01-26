@@ -32,7 +32,7 @@ const ProductPage = () => {
       >
         <ProductActionsContainer />
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} sx={{ marginTop: "2rem" }}>
         <ProductDescription />
       </Grid>
     </Grid>

@@ -37,18 +37,15 @@ const theme = createTheme({
     },
 
     h1: {
-      // fontFamily: "Roboto",
       fontSize: "3.5rem",
       fontWeight: 500,
     },
     h2: {
-      // fontFamily: "Roboto",
-      fontSize: "1.8rem",
+      fontSize: "2rem",
       fontWeight: 900,
     },
     h3: {
-      // fontFamily: "Roboto",
-      fontSize: "2rem",
+      fontSize: "1.8rem",
       fontWeight: 500,
     },
     h4: {
@@ -56,14 +53,13 @@ const theme = createTheme({
       fontWeight: 700,
     },
     h5: {
-      // fontFamily: "Roboto",
-      fontSize: "1rem",
-      fontWeight: 300,
+      fontSize: "0.9rem",
+      fontWeight: "600",
     },
     h6: {
-      // fontFamily: "Roboto",
-      fontSize: "1rem",
-      fontWeight: 700,
+      color: "#969493",
+      fontSize: "0.7rem",
+      fontWeight: 600,
     },
 
     body1: {
@@ -85,7 +81,7 @@ const theme = createTheme({
       fontWeight: "600",
     },
     subtitle2: {
-      fontSize: "0.9rem",
+      fontSize: "0.7rem",
       fontWeight: "600",
     },
   },

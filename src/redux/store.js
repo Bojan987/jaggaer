@@ -1,9 +1,10 @@
 import { createStore, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { addToCartReducer } from "./reducers/cartReducers";
+import { addToCartReducer, isVisibleReducer } from "./reducers/cartReducers";
 
 const reducer = combineReducers({
   cart: addToCartReducer,
+  isVisible: isVisibleReducer,
 });
 
 const initialState = {};

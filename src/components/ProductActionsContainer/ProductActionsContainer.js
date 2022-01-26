@@ -1,11 +1,39 @@
 import { Grid, Icon, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import data from "../../resources/data/data.json";
 import Rating from "../rating/Rating";
 import iconDicount from "../../resources/icons/discount.svg";
 import AddToCart from "../addToCart/AddToCart";
+import useIntersection from "../../util/useIntersection";
+import { useDispatch } from "react-redux";
+import { isVisibleAction } from "../../redux/actions/cartActions";
 
 const ProductActionsContainer = () => {
+  const dispatch = useDispatch();
+
+  const ref = useRef();
+  const [isVisibale, setIsvisible] = useState(false);
+  const intersectionCallback = (entries) => {
+    const [entry] = entries;
+    setIsvisible(entry.isIntersecting);
+    dispatch(isVisibleAction(entry.isIntersecting));
+  };
+
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    treshold: 1.0,
+  };
+  useEffect(() => {
+    const observer = new IntersectionObserver(intersectionCallback, options);
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+    return () => {
+      if (ref.current) observer.unobserve(ref.current);
+    };
+  }, [ref, options]);
+
   const formatPrice = (x) => {
     return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
   };
@@ -40,7 +68,7 @@ const ProductActionsContainer = () => {
             <Rating />
           </Grid>
           <Grid item xs={12} sx={{ position: "relative" }}>
-            <Typography sx={{ display: "inline" }} variant="subtitle2">
+            <Typography sx={{ display: "inline" }} variant="h5">
               {formatPrice(data.article.price)}
             </Typography>
             <Typography sx={{ display: "inline" }} variant="subtitle1">
@@ -52,11 +80,7 @@ const ProductActionsContainer = () => {
             <Icon
               sx={{
                 fontSize: "1rem",
-
                 marginLeft: "7px",
-                // position: "absolute",
-                // top: 0,
-                // left: 180,
               }}
             >
               <img src={iconDicount} />
@@ -67,9 +91,11 @@ const ProductActionsContainer = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <AddToCart />
-      </Grid>
+      <div ref={ref}>
+        <Grid item xs={12}>
+          <AddToCart />
+        </Grid>
+      </div>
     </Grid>
   );
 };

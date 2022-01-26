@@ -52,7 +52,7 @@ const Navbar = (props) => {
               }}
             >
               <Grid item>
-                <Typography variant="h6" component="div" color="secondary">
+                <Typography variant="h5" component="div" color="secondary">
                   {data.article.description_short}
                 </Typography>
               </Grid>
