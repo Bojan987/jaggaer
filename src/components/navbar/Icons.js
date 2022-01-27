@@ -16,7 +16,12 @@ const Icons = () => {
   return (
     <Grid
       container
-      sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: "5px",
+      }}
     >
       <Grid item sx={{ ...gridStyle }}>
         <Icon>

@@ -18,15 +18,6 @@ const PriceBreak = ({ total, qty, currency, unit, discount }) => {
         sx={{ display: "inline", marginLeft: "15px" }}
       >{`${formatPrice(discountPerUnit)} ${currency}/${unit}`}</Typography>
     </Grid>
-    //     <Grid container>
-    //     <Grid item>
-    //     <Typography>{`ex ${qty} ${unit}`}</Typography>
-    //     </Grid>
-    //     <Grid item>
-
-    //         </Grid>
-
-    // </Grid>
   );
 };
 

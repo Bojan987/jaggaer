@@ -1,4 +1,5 @@
-import { Container, Grid } from "@mui/material";
+import { useTheme } from "@emotion/react";
+import { Grid, useMediaQuery } from "@mui/material";
 import React from "react";
 import BigPackageContainer from "../../components/packageContainers/BigPackageContainer";
 import SmallPackageContainer from "../../components/packageContainers/SmallPackageContainer";
@@ -6,16 +7,27 @@ import ProductActionsContainer from "../../components/ProductActionsContainer/Pr
 import ProductDescription from "./ProductDescription";
 
 const ProductPage = () => {
+  const theme = useTheme();
+  // change dispay on screens < 900px
+  const match900 = useMediaQuery(theme.breakpoints.down(900));
+
   return (
     <Grid
       container
       sx={{
         display: "flex",
         alignItems: "center",
-        justifyContent: "flex-start",
+        justifyContent: match900 ? "center" : "flex-start",
       }}
     >
-      <Grid item sx={{ alignSelf: "flex-start", marginRight: "1rem" }}>
+      <Grid
+        item
+        sx={{
+          alignSelf: "flex-start",
+
+          marginRight: "1rem",
+        }}
+      >
         <SmallPackageContainer />
       </Grid>
       <Grid>
@@ -23,7 +35,8 @@ const ProductPage = () => {
       </Grid>
       <Grid
         item
-        xs={3}
+        lg={3}
+        md={4}
         sx={{
           alignSelf: "flex-start",
           marginRight: "1rem",

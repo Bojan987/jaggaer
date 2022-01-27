@@ -1,8 +1,12 @@
-import { Grid, Icon } from "@mui/material";
+import { useTheme } from "@emotion/react";
+import { Grid, Icon, useMediaQuery } from "@mui/material";
 import React from "react";
 import iconPackage from "../../resources/icons/package.svg";
 
 const SmallPackageContainer = () => {
+  const theme = useTheme();
+  // change display on screens < 550px
+  const match550 = useMediaQuery(theme.breakpoints.down(550));
   return (
     <Grid
       container
@@ -10,17 +14,18 @@ const SmallPackageContainer = () => {
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "flex-start",
-        flexDirection: "column",
+        flexDirection: match550 ? "row" : "column",
         marginLeft: "2px",
       }}
     >
       <Grid
         item
-        xs={12}
+        xs={match550 ? 5 : 12}
         sx={{
           border: "2px solid #EBEBEB",
           padding: "1rem",
           marginBottom: "1rem",
+          marginRight: match550 ? "1rem" : 0,
         }}
       >
         <Icon
@@ -33,7 +38,11 @@ const SmallPackageContainer = () => {
           <img src={iconPackage} />
         </Icon>
       </Grid>
-      <Grid item xs={12} sx={{ border: "2px solid #EBEBEB", padding: "1rem" }}>
+      <Grid
+        item
+        xs={match550 ? 5 : 12}
+        sx={{ border: "2px solid #EBEBEB", padding: "1rem" }}
+      >
         <Icon
           sx={{
             filter:

@@ -8,33 +8,10 @@ const theme = createTheme({
     secondary: {
       main: "#E35044",
     },
-    // action: {
-    //   active: "#333333",
-    // },
-    // success: {
-    //   main: "#006442",
-    // },
-    // warning: {
-    //   main: "#BE2528",
-    // },
-    // error: {
-    //   main: "#BE2528",
-    // },
-    // info: {
-    //   main: "#ffffff",
-    // },
   },
 
   typography: {
-    // fontFamily: "Open Sans,sans-serif",
-
     color: "#FFFFFF",
-
-    tab: {
-      fontWeight: 700,
-      color: "white",
-      fontSize: "1rem",
-    },
 
     h1: {
       fontSize: "3.5rem",

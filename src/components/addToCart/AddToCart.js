@@ -1,12 +1,14 @@
 import { Button, Grid, Icon, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { forwardRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/actions/cartActions";
 import iconAdd from "../../resources/icons/add.svg";
 
-const AddToCart = () => {
+const AddToCart = forwardRef(() => {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
+
+  // handle input quantity
   const handleChange = (e) => {
     setQuantity(e.target.value);
   };
@@ -54,6 +56,6 @@ const AddToCart = () => {
       </Grid>
     </Grid>
   );
-};
+});
 
 export default AddToCart;

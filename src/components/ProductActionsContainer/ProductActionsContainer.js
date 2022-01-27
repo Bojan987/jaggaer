@@ -4,26 +4,27 @@ import data from "../../resources/data/data.json";
 import Rating from "../rating/Rating";
 import iconDicount from "../../resources/icons/discount.svg";
 import AddToCart from "../addToCart/AddToCart";
-import useIntersection from "../../util/useIntersection";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { isVisibleAction } from "../../redux/actions/cartActions";
 
 const ProductActionsContainer = () => {
   const dispatch = useDispatch();
-
+  // ref for AddToCart component to observe if its on screen view
   const ref = useRef();
-  const [isVisibale, setIsvisible] = useState(false);
+  // intersection callback - dispatch action to observe if AddToCart is inside screen view
   const intersectionCallback = (entries) => {
     const [entry] = entries;
-    setIsvisible(entry.isIntersecting);
+
     dispatch(isVisibleAction(entry.isIntersecting));
   };
+  const state = useSelector((state) => state.isVisible);
 
   const options = {
     root: null,
     rootMargin: "0px",
     treshold: 1.0,
   };
+  // observe ref with intersectionObserver
   useEffect(() => {
     const observer = new IntersectionObserver(intersectionCallback, options);
     if (ref.current) {
@@ -33,7 +34,7 @@ const ProductActionsContainer = () => {
       if (ref.current) observer.unobserve(ref.current);
     };
   }, [ref, options]);
-
+  // format price to have "," for every 1000
   const formatPrice = (x) => {
     return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
   };
@@ -91,11 +92,9 @@ const ProductActionsContainer = () => {
           </Grid>
         </Grid>
       </Grid>
-      <div ref={ref}>
-        <Grid item xs={12}>
-          <AddToCart />
-        </Grid>
-      </div>
+      <Grid item xs={12} ref={ref}>
+        <AddToCart />
+      </Grid>
     </Grid>
   );
 };
