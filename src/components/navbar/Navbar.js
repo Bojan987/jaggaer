@@ -44,7 +44,6 @@ const Navbar = (props) => {
   const match650 = useMediaQuery(theme.breakpoints.between(450, 900));
   const match450 = useMediaQuery(theme.breakpoints.down(450));
 
-  console.log(match650, match450);
   return (
     <React.Fragment>
       <CssBaseline />
