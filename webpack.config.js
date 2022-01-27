@@ -1,5 +1,6 @@
 import path from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import data from "../jaggaer/src/resources/data/data.json";
 
 module.exports = {
   entry: path.join(__dirname, "src", "index.js"),
@@ -9,7 +10,7 @@ module.exports = {
   devServer: {
     onAfterSetupMiddleware: function (devServer) {
       devServer.app.get("/getData", function (req, res) {
-        res.json(path.resolve(__dirname, "src/resources/data/data.json"));
+        res.json(data);
       });
     },
     port: 3000,
@@ -22,7 +23,7 @@ module.exports = {
       {
         // compile any React,
         // ES6 and above into normal ES5 syntax
-        test: /\.(js|jsx|json)$/,
+        test: /\.(js|jsx)$/,
         // exclude node modules compile
         exclude: /node_modules/,
         use: ["babel-loader"],
@@ -38,7 +39,7 @@ module.exports = {
           // compiles Sass to CSS, using Node Sass by default
         ],
       },
-      { test: /\.(jpg|jpeg|png|gif|mp3|svg|json)$/, use: ["file-loader"] },
+      { test: /\.(jpg|jpeg|png|gif|mp3|svg)$/, use: ["file-loader"] },
     ],
   },
   plugins: [
