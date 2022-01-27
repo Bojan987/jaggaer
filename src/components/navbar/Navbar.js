@@ -8,6 +8,8 @@ import { Grid } from "@mui/material";
 import data from "../../resources/data/data.json";
 import Icons from "./Icons";
 import styled from "@emotion/styled";
+import { useSelector } from "react-redux";
+import AddToCart from "../addToCart/AddToCart";
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -35,6 +37,8 @@ const ToolbarMargin = styled("div")(({ theme }) => ({
 }));
 
 const Navbar = (props) => {
+  const isVisible = useSelector((state)=>state.isVisible)
+  console.log(isVisible)
   console.log(data);
   return (
     <React.Fragment>
@@ -56,7 +60,10 @@ const Navbar = (props) => {
                   {data.article.description_short}
                 </Typography>
               </Grid>
+             {!isVisible&& <Grid item>
 
+                <AddToCart/>
+              </Grid>}
               <Grid item>
                 <Icons />
               </Grid>
