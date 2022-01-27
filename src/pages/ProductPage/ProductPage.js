@@ -1,5 +1,5 @@
 import { useTheme } from "@emotion/react";
-import { Container, Grid, useMediaQuery } from "@mui/material";
+import { Grid, useMediaQuery } from "@mui/material";
 import React from "react";
 import BigPackageContainer from "../../components/packageContainers/BigPackageContainer";
 import SmallPackageContainer from "../../components/packageContainers/SmallPackageContainer";
@@ -8,8 +8,9 @@ import ProductDescription from "./ProductDescription";
 
 const ProductPage = () => {
   const theme = useTheme();
+  // change dispay on screens < 900px
   const match900 = useMediaQuery(theme.breakpoints.down(900));
-  const match550 = useMediaQuery(theme.breakpoints.down(550));
+
   return (
     <Grid
       container

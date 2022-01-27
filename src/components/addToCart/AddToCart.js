@@ -7,6 +7,8 @@ import iconAdd from "../../resources/icons/add.svg";
 const AddToCart = forwardRef(() => {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
+
+  // handle input quantity
   const handleChange = (e) => {
     setQuantity(e.target.value);
   };

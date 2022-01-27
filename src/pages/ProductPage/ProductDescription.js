@@ -12,6 +12,7 @@ import AttachmentTypography from "../../components/attachmentTypography/Attachme
 import BuletedTypography from "../../components/BuletedTypography/BuletedTypography";
 import PriceBreak from "../../components/priceBreaks/PriceBreak";
 import data from "../../resources/data/data.json";
+
 const ProductDescription = () => {
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.down(900));

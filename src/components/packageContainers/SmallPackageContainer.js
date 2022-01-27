@@ -5,7 +5,7 @@ import iconPackage from "../../resources/icons/package.svg";
 
 const SmallPackageContainer = () => {
   const theme = useTheme();
-
+  // change display on screens < 550px
   const match550 = useMediaQuery(theme.breakpoints.down(550));
   return (
     <Grid
