@@ -10,7 +10,7 @@ module.exports = {
   devServer: {
     onBeforeSetupMiddleware: function (devServer) {
       devServer.app.get("/getData", function (req, res) {
-        res.json(data);
+        res.json(path.resolve(__dirname, "src/resources/data/data.json"));
       });
     },
     port: 3000,
