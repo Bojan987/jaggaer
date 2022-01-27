@@ -1,6 +1,6 @@
 import path from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
-import data from "../jaggaer/src/resources/data/data.json";
+import * as data from "../jaggaer/src/resources/data/data.json";
 
 module.exports = {
   entry: path.join(__dirname, "src", "index.js"),
