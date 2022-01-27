@@ -7,14 +7,17 @@ module.exports = {
   mode: process.env.NODE_ENV || "development",
   resolve: { modules: [path.resolve(__dirname, "src"), "node_modules"] },
   devServer: {
-    onBeforeSetupMiddleware: function (devServer) {
-      devServer.app.get("/getData", function (req, res) {
-        res.json(path.resolve(__dirname, "src/resources/data/data.json"));
-      });
-    },
     port: 3000,
     static: {
       directory: path.join(__dirname, "src"),
+    },
+    static: {
+      directory: path.join(__dirname, "src/resources/data/data.json"),
+    },
+    onAfterSetupMiddleware: function (devServer) {
+      devServer.app.get("/getData", function (req, res) {
+        res.json(path.resolve(__dirname, "src/resources/data/data.json"));
+      });
     },
   },
   module: {
