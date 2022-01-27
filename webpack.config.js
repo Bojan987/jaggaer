@@ -39,6 +39,15 @@ module.exports = {
         ],
       },
       { test: /\.(jpg|jpeg|png|gif|mp3|svg)$/, use: ["file-loader"] },
+      {
+        type: "javascript/auto",
+        test: /\.json$/,
+        loader: "file-loader",
+        options: {
+          name: "[name].[ext]",
+          outputPath: "./assets",
+        },
+      },
     ],
   },
   plugins: [
