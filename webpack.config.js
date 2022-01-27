@@ -8,7 +8,7 @@ module.exports = {
   mode: process.env.NODE_ENV || "development",
   resolve: { modules: [path.resolve(__dirname, "src"), "node_modules"] },
   devServer: {
-    onAfterSetupMiddleware: function (devServer) {
+    onBeforeSetupMiddleware: function (devServer) {
       devServer.app.get("/getData", function (req, res) {
         res.json(data);
       });
@@ -40,6 +40,7 @@ module.exports = {
         ],
       },
       { test: /\.(jpg|jpeg|png|gif|mp3|svg)$/, use: ["file-loader"] },
+      { test: /\.json$/, exclude: /(node_modules)/, use: "json-loader" },
     ],
   },
   plugins: [
