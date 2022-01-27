@@ -1,13 +1,23 @@
-import { Chip, Container, Divider, Grid, Typography } from "@mui/material";
+import { useTheme } from "@emotion/react";
+import {
+  Chip,
+  Container,
+  Divider,
+  Grid,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import React from "react";
 import AttachmentTypography from "../../components/attachmentTypography/AttachmentTypography";
 import BuletedTypography from "../../components/BuletedTypography/BuletedTypography";
 import PriceBreak from "../../components/priceBreaks/PriceBreak";
 import data from "../../resources/data/data.json";
 const ProductDescription = () => {
+  const theme = useTheme();
+  const match = useMediaQuery(theme.breakpoints.down(900));
   return (
     <Grid container sx={{ backgroundColor: "#EFEFEF" }} spacing={2}>
-      <Grid item xs={7} sx={{ marginBottom: "2rem", marginTop: "2rem" }}>
+      <Grid item xl={8} lg={8} sx={{ marginBottom: "2rem", marginTop: "2rem" }}>
         <Container>
           <Typography
             variant="subtitle1"
@@ -26,10 +36,13 @@ const ProductDescription = () => {
           <Grid container>
             <Grid
               item
-              xs={3}
+              xl={3}
+              lg={4}
+              md={5}
+              xs={12}
               sx={{
                 backgroundColor: "#ffff",
-                marginRight: "2rem",
+                marginRight: match ? 0 : "2rem",
                 marginBottom: "2rem",
               }}
             >
@@ -73,7 +86,10 @@ const ProductDescription = () => {
             </Grid>
             <Grid
               item
-              xs={3}
+              xl={3}
+              lg={4}
+              md={5}
+              xs={12}
               sx={{ backgroundColor: "#ffff", marginBottom: "2rem" }}
             >
               <Container sx={{ height: "300px", padding: "1rem" }}>

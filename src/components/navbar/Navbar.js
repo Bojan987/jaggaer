@@ -4,10 +4,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import CssBaseline from "@mui/material/CssBaseline";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
-import { Grid } from "@mui/material";
+import { Grid, useMediaQuery } from "@mui/material";
 import data from "../../resources/data/data.json";
 import Icons from "./Icons";
 import styled from "@emotion/styled";
+import AddToCart from "../addToCart/AddToCart";
+import { useSelector } from "react-redux";
+import { useTheme } from "@emotion/react";
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -35,7 +38,13 @@ const ToolbarMargin = styled("div")(({ theme }) => ({
 }));
 
 const Navbar = (props) => {
-  console.log(data);
+  const isVisible = useSelector((state) => state.isVisible);
+  const theme = useTheme();
+  // remove title if screen is < 650px
+  const match650 = useMediaQuery(theme.breakpoints.between(450, 900));
+  const match450 = useMediaQuery(theme.breakpoints.down(450));
+
+  console.log(match650, match450);
   return (
     <React.Fragment>
       <CssBaseline />
@@ -47,15 +56,27 @@ const Navbar = (props) => {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "space-between",
+                justifyContent: match450 ? "center" : "space-between",
                 minHeight: "100%",
               }}
             >
-              <Grid item>
-                <Typography variant="h5" component="div" color="secondary">
-                  {data.article.description_short}
-                </Typography>
-              </Grid>
+              {!match650 && !match450 && (
+                <Grid
+                  item
+                  sm={!isVisible ? 4 : 8}
+                  md={!isVisible ? 6 : 9}
+                  lg={!isVisible ? 8 : 10}
+                >
+                  <Typography variant="h5" component="div" color="secondary">
+                    {data.article.description_short}
+                  </Typography>
+                </Grid>
+              )}
+              {isVisible !== undefined && !isVisible && (
+                <Grid item sx={{ padding: match450 ? "20px" : "5px" }}>
+                  <AddToCart />
+                </Grid>
+              )}
 
               <Grid item>
                 <Icons />

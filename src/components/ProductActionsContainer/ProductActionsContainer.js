@@ -4,20 +4,21 @@ import data from "../../resources/data/data.json";
 import Rating from "../rating/Rating";
 import iconDicount from "../../resources/icons/discount.svg";
 import AddToCart from "../addToCart/AddToCart";
-import useIntersection from "../../util/useIntersection";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { isVisibleAction } from "../../redux/actions/cartActions";
 
 const ProductActionsContainer = () => {
   const dispatch = useDispatch();
 
   const ref = useRef();
-  const [isVisibale, setIsvisible] = useState(false);
+
   const intersectionCallback = (entries) => {
     const [entry] = entries;
-    setIsvisible(entry.isIntersecting);
+
     dispatch(isVisibleAction(entry.isIntersecting));
   };
+  const state = useSelector((state) => state.isVisible);
+  console.log(state);
 
   const options = {
     root: null,
@@ -91,11 +92,11 @@ const ProductActionsContainer = () => {
           </Grid>
         </Grid>
       </Grid>
-      <div ref={ref}>
-        <Grid item xs={12}>
-          <AddToCart />
-        </Grid>
-      </div>
+      {/* <div ref={ref}> */}
+      <Grid item xs={12} ref={ref}>
+        <AddToCart />
+      </Grid>
+      {/* </div> */}
     </Grid>
   );
 };
