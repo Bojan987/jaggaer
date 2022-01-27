@@ -38,16 +38,7 @@ module.exports = {
           // compiles Sass to CSS, using Node Sass by default
         ],
       },
-      { test: /\.(jpg|jpeg|png|gif|mp3|svg)$/, use: ["file-loader"] },
-      {
-        type: "javascript/auto",
-        test: /\.json$/,
-        loader: "file-loader",
-        options: {
-          name: "[name].[ext]",
-          outputPath: "./assets",
-        },
-      },
+      { test: /\.(jpg|jpeg|png|gif|mp3|svg|json)$/, use: ["file-loader"] },
     ],
   },
   plugins: [
