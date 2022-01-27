@@ -22,7 +22,7 @@ module.exports = {
       {
         // compile any React,
         // ES6 and above into normal ES5 syntax
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|json)$/,
         // exclude node modules compile
         exclude: /node_modules/,
         use: ["babel-loader"],
