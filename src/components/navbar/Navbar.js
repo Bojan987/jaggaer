@@ -5,7 +5,6 @@ import Typography from "@mui/material/Typography";
 import CssBaseline from "@mui/material/CssBaseline";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import { Grid, useMediaQuery } from "@mui/material";
-import data from "../../resources/data/data.json";
 import Icons from "./Icons";
 import styled from "@emotion/styled";
 import AddToCart from "../addToCart/AddToCart";
@@ -28,7 +27,7 @@ function ElevationScroll(props) {
 
 const ToolbarMargin = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
-  // marginBottom: "3em",
+
   [theme.breakpoints.down("md")]: {
     marginBottom: "2em",
   },
@@ -37,27 +36,43 @@ const ToolbarMargin = styled("div")(({ theme }) => ({
   },
 }));
 
+const AppBarStyled = styled(AppBar)({
+  backgroundColor: "#fff",
+});
+
+const ToolbarStyled = styled(Toolbar)({
+  minHeight: "0px",
+});
+
+const GridContainerStyled = styled(Grid)((props) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: props.match450,
+  minHeight: "100%",
+}));
+
+const GridItemStyled = styled(Grid)((props) => ({
+  padding: props.padding,
+}));
+
 const Navbar = (props) => {
   const isVisible = useSelector((state) => state.isVisible);
+  const { product: data } = useSelector((state) => state.product);
+
   const theme = useTheme();
   // remove title if screen is < 650px
   const match650 = useMediaQuery(theme.breakpoints.between(450, 900));
   const match450 = useMediaQuery(theme.breakpoints.down(450));
-
+  styled;
   return (
     <React.Fragment>
       <CssBaseline />
       <ElevationScroll {...props}>
-        <AppBar sx={{ backgroundColor: "#fff" }}>
-          <Toolbar sx={{ minHeight: "0px" }}>
-            <Grid
+        <AppBarStyled>
+          <ToolbarStyled>
+            <GridContainerStyled
               container
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: match450 ? "center" : "space-between",
-                minHeight: "100%",
-              }}
+              match450={match450 ? "center" : "space-between"}
             >
               {!match650 && !match450 && (
                 <Grid
@@ -66,23 +81,25 @@ const Navbar = (props) => {
                   md={!isVisible ? 6 : 9}
                   lg={!isVisible ? 8 : 10}
                 >
-                  <Typography variant="h5" component="div" color="secondary">
-                    {data.article.description_short}
-                  </Typography>
+                  {data && (
+                    <Typography variant="h5" component="div" color="secondary">
+                      {data.article.description_short}
+                    </Typography>
+                  )}
                 </Grid>
               )}
               {isVisible !== undefined && !isVisible && (
-                <Grid item sx={{ padding: match450 ? "20px" : "5px" }}>
+                <GridItemStyled item padding={match450 ? "20px" : "5px"}>
                   <AddToCart />
-                </Grid>
+                </GridItemStyled>
               )}
 
               <Grid item>
                 <Icons />
               </Grid>
-            </Grid>
-          </Toolbar>
-        </AppBar>
+            </GridContainerStyled>
+          </ToolbarStyled>
+        </AppBarStyled>
       </ElevationScroll>
       <Toolbar />
 

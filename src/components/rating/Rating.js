@@ -1,57 +1,28 @@
-import { Grid, Icon } from "@mui/material";
+import styled from "@emotion/styled";
 import React from "react";
 import iconStar from "../../resources/icons/star-filled.svg";
 import iconEmptyStar from "../../resources/icons/star.svg";
 
-const Rating = () => {
+const StarStyled = styled("img")({
+  height: "1.5rem",
+});
+
+const StarContainer = styled("span")({
+  margin: "1.5rem 1rem 1rem 0",
+});
+
+const Rating = ({ value }) => {
+  const emptyStars = 5 - value * 1;
+
   return (
-    <Grid container sx={{ margin: "1rem 0" }}>
-      <Icon
-        sx={{
-          filter:
-            "invert(74%) sepia(28%) saturate(6590%) hue-rotate(351deg) brightness(107%) contrast(92%)",
-          fontSize: "1.5rem",
-        }}
-      >
-        <img src={iconStar} />
-      </Icon>{" "}
-      <Icon
-        sx={{
-          filter:
-            "invert(74%) sepia(28%) saturate(6590%) hue-rotate(351deg) brightness(107%) contrast(92%)",
-          fontSize: "1.5rem",
-        }}
-      >
-        <img src={iconStar} />
-      </Icon>{" "}
-      <Icon
-        sx={{
-          filter:
-            "invert(74%) sepia(28%) saturate(6590%) hue-rotate(351deg) brightness(107%) contrast(92%)",
-          fontSize: "1.5rem",
-        }}
-      >
-        <img src={iconStar} />
-      </Icon>{" "}
-      <Icon
-        sx={{
-          filter:
-            "invert(74%) sepia(28%) saturate(6590%) hue-rotate(351deg) brightness(107%) contrast(92%)",
-          fontSize: "1.5rem",
-        }}
-      >
-        <img src={iconEmptyStar} />
-      </Icon>{" "}
-      <Icon
-        sx={{
-          filter:
-            "invert(74%) sepia(28%) saturate(6590%) hue-rotate(351deg) brightness(107%) contrast(92%)",
-          fontSize: "1.5rem",
-        }}
-      >
-        <img src={iconEmptyStar} />
-      </Icon>
-    </Grid>
+    <StarContainer>
+      {[...Array(value * 1).keys()].map((star) => (
+        <StarStyled src={iconStar} key={star} />
+      ))}
+      {[...Array(emptyStars).keys()].map((star) => (
+        <StarStyled src={iconEmptyStar} key={star} />
+      ))}
+    </StarContainer>
   );
 };
 

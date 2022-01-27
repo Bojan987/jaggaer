@@ -1,4 +1,6 @@
 import { CssBaseline } from "@mui/material";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import { ThemeProvider } from "@mui/material/styles";
 import React from "react";
 import ReactDOM from "react-dom";

@@ -1,4 +1,5 @@
 import { useTheme } from "@emotion/react";
+import styled from "@emotion/styled";
 import { Grid, useMediaQuery } from "@mui/material";
 import React from "react";
 import BigPackageContainer from "../../components/packageContainers/BigPackageContainer";
@@ -6,49 +7,47 @@ import SmallPackageContainer from "../../components/packageContainers/SmallPacka
 import ProductActionsContainer from "../../components/ProductActionsContainer/ProductActionsContainer";
 import ProductDescription from "./ProductDescription";
 
+const GridContainer = styled(Grid)((props) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: props.justify,
+}));
+
+const GridItemSmall = styled(Grid)({
+  alignSelf: "flex-start",
+
+  marginRight: "1rem",
+});
+
+const GridProductActions = styled(Grid)({
+  alignSelf: "flex-start",
+  marginRight: "1rem",
+  height: "22.4rem",
+});
+
+const GridProductDescription = styled(Grid)({
+  marginTop: "2rem",
+});
 const ProductPage = () => {
   const theme = useTheme();
   // change dispay on screens < 900px
   const match900 = useMediaQuery(theme.breakpoints.down(900));
 
   return (
-    <Grid
-      container
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: match900 ? "center" : "flex-start",
-      }}
-    >
-      <Grid
-        item
-        sx={{
-          alignSelf: "flex-start",
-
-          marginRight: "1rem",
-        }}
-      >
+    <GridContainer container justify={match900 ? "center" : "flex-start"}>
+      <GridItemSmall item>
         <SmallPackageContainer />
-      </Grid>
+      </GridItemSmall>
       <Grid>
         <BigPackageContainer />
       </Grid>
-      <Grid
-        item
-        lg={3}
-        md={4}
-        sx={{
-          alignSelf: "flex-start",
-          marginRight: "1rem",
-          height: "22.4rem",
-        }}
-      >
+      <GridProductActions item lg={3} md={4}>
         <ProductActionsContainer />
-      </Grid>
-      <Grid item xs={12} sx={{ marginTop: "2rem" }}>
+      </GridProductActions>
+      <GridProductDescription item xs={12}>
         <ProductDescription />
-      </Grid>
-    </Grid>
+      </GridProductDescription>
+    </GridContainer>
   );
 };
 

@@ -1,5 +1,6 @@
 import path from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import data from "../jaggaer/src/resources/data/data.json";
 
 module.exports = {
   entry: path.join(__dirname, "src", "index.js"),
@@ -7,6 +8,11 @@ module.exports = {
   mode: process.env.NODE_ENV || "development",
   resolve: { modules: [path.resolve(__dirname, "src"), "node_modules"] },
   devServer: {
+    onAfterSetupMiddleware: function (devServer) {
+      devServer.app.get("/getData", function (req, res) {
+        res.json(data);
+      });
+    },
     port: 3000,
     static: {
       directory: path.join(__dirname, "src"),
