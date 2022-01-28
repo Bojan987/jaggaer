@@ -28,10 +28,6 @@ module.exports = {
         response.send(data);
       });
 
-      middlewares.push((req, res) => {
-        res.send("Hello World!");
-      });
-
       return middlewares;
     },
   },
