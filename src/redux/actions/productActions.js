@@ -1,14 +1,16 @@
-import data from "../../resources/data/data.json";
+import axios from "axios";
 import {
   PRODUCT_FAIL,
   PRODUCT_REQUEST,
   PRODUCT_SUCCESS,
 } from "../constants/productConstants";
 
-export const getProduct = () => (dispatch) => {
+export const getProduct = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_REQUEST });
 
+    const { data } = await axios.get("/data/data.json");
+    console.log("DATA iz akcije", data);
     dispatch({
       type: PRODUCT_SUCCESS,
       payload: data,

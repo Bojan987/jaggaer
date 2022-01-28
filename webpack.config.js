@@ -9,27 +9,7 @@ module.exports = {
   resolve: { modules: [path.resolve(__dirname, "src"), "node_modules"] },
   devServer: {
     port: 3000,
-    static: {
-      directory: path.join(__dirname, "src"),
-    },
-
-    // onBeforeSetupMiddleware: function (devServer) {
-    //   devServer.app.get("/getData", function (req, res) {
-    //     res(data);
-    //   });
-    // },
-
-    setupMiddlewares: (middlewares, devServer) => {
-      if (!devServer) {
-        throw new Error("webpack-dev-server is not defined");
-      }
-
-      devServer.app.get("/getData", (_, response) => {
-        response.send(data);
-      });
-
-      return middlewares;
-    },
+    static: true,
   },
   module: {
     rules: [
