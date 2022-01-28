@@ -11,9 +11,7 @@ module.exports = {
     static: {
       directory: path.join(__dirname, "src"),
     },
-    static: {
-      directory: path.join(__dirname, "./src/resources/data/data.json"),
-    },
+
     onAfterSetupMiddleware: function (devServer) {
       devServer.app.get("/getData", function (req, res) {
         res.json(path.resolve(__dirname, "src/resources/data/data.json"));
