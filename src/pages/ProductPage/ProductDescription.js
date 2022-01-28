@@ -68,11 +68,12 @@ const ChipStyled = styled(Chip)({
 
 const ProductDescription = () => {
   const { product: data } = useSelector((state) => state.product);
+  console.log("Data", data);
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.down(900));
   return (
     <>
-      {data && (
+      {data && data.article && (
         <GridContainerWrapper container spacing={2}>
           <GridItemDescription item xl={8} lg={8}>
             <Container>

@@ -76,7 +76,7 @@ const ProductActionsContainer = () => {
   return (
     <GridContainerStyled container>
       <Grid item>
-        {data && (
+        {data && data.article && (
           <Grid container>
             <Grid item xs={12}>
               <Typography variant="subtitle1">

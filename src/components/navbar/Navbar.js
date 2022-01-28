@@ -81,7 +81,7 @@ const Navbar = (props) => {
                   md={!isVisible ? 6 : 9}
                   lg={!isVisible ? 8 : 10}
                 >
-                  {data && (
+                  {data && data.article && (
                     <Typography variant="h5" component="div" color="secondary">
                       {data.article.description_short}
                     </Typography>

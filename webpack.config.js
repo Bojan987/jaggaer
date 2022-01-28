@@ -1,5 +1,6 @@
 import path from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import { data } from "./src/resources/data/data.json";
 
 module.exports = {
   entry: path.join(__dirname, "src", "index.js"),
@@ -14,7 +15,7 @@ module.exports = {
 
     onAfterSetupMiddleware: function (devServer) {
       devServer.app.get("/getData", function (req, res) {
-        res.json(path.resolve(__dirname, "src/resources/data/data.json"));
+        res.json(data);
       });
     },
   },
@@ -39,8 +40,7 @@ module.exports = {
           // compiles Sass to CSS, using Node Sass by default
         ],
       },
-      { test: /\.(jpg|jpeg|png|gif|mp3|svg)$/, use: ["file-loader"] },
-      { test: /\.json$/, exclude: /(node_modules)/, use: "json-loader" },
+      { test: /\.(jpg|jpeg|png|gif|mp3|svg|json)$/, use: ["file-loader"] },
     ],
   },
   plugins: [
