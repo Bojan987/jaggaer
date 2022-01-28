@@ -1,6 +1,5 @@
 import path from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
-import { data } from "./src/resources/data/data.json";
 
 module.exports = {
   entry: path.join(__dirname, "src", "index.js"),
@@ -10,6 +9,7 @@ module.exports = {
   devServer: {
     port: 3000,
     static: true,
+    // directory: path.join(__dirname, "src"),
   },
   module: {
     rules: [
@@ -32,7 +32,10 @@ module.exports = {
           // compiles Sass to CSS, using Node Sass by default
         ],
       },
-      { test: /\.(jpg|jpeg|png|gif|mp3|svg)$/, use: ["file-loader"] },
+      {
+        test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
+        use: ["file-loader"],
+      },
     ],
   },
   plugins: [
