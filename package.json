@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "babel-node ./node_modules/webpack/bin/webpack && cp /public/data/data.json ",
+    "webpack": "babel-node ./node_modules/webpack/bin/webpack ",
     "start": "babel-node ./node_modules/webpack-dev-server/bin/webpack-dev-server --open",
     "build": "babel-node ./node_modules/webpack/bin/webpack"
   },
@@ -36,6 +36,7 @@
     "@mui/material": "^5.3.1",
     "axios": "^0.25.0",
     "babel-polyfill": "^6.26.0",
+    "copy-webpack-plugin": "^10.2.1",
     "core-js": "^3.20.3",
     "json-loader": "^0.5.7",
     "prop-types": "^15.8.1",

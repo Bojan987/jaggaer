@@ -1,5 +1,6 @@
 import path from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import CopyWebpackPlugin from "copy-webpack-plugin";
 
 module.exports = {
   entry: path.join(__dirname, "src", "index.js"),
@@ -41,6 +42,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "src", "index.html"),
+    }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: "public" }],
     }),
   ],
 };
