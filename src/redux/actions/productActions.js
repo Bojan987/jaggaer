@@ -1,22 +1,20 @@
-import axios from "axios";
+import data from "../../resources/data/data.json";
 import {
   PRODUCT_FAIL,
   PRODUCT_REQUEST,
   PRODUCT_SUCCESS,
 } from "../constants/productConstants";
 
-export const getProduct = () => async (dispatch) => {
+export const getProduct = () => (dispatch) => {
   try {
     dispatch({ type: PRODUCT_REQUEST });
-
-    const { data } = await axios.get(`/getData`);
 
     dispatch({
       type: PRODUCT_SUCCESS,
       payload: data,
     });
   } catch (error) {
-    console.log(error);
+    console.log(error.response);
     dispatch({
       type: PRODUCT_FAIL,
       payload:

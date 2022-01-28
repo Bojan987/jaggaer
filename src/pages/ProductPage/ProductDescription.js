@@ -68,7 +68,7 @@ const ChipStyled = styled(Chip)({
 
 const ProductDescription = () => {
   const { product: data } = useSelector((state) => state.product);
-  console.log("Data", data);
+
   const theme = useTheme();
   const match = useMediaQuery(theme.breakpoints.down(900));
   return (

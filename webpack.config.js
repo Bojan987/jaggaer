@@ -13,10 +13,26 @@ module.exports = {
       directory: path.join(__dirname, "src"),
     },
 
-    onAfterSetupMiddleware: function (devServer) {
-      devServer.app.get("/getData", function (req, res) {
-        res.json(data);
+    // onBeforeSetupMiddleware: function (devServer) {
+    //   devServer.app.get("/getData", function (req, res) {
+    //     res(data);
+    //   });
+    // },
+
+    setupMiddlewares: (middlewares, devServer) => {
+      if (!devServer) {
+        throw new Error("webpack-dev-server is not defined");
+      }
+
+      devServer.app.get("/getData", (_, response) => {
+        response.send(data);
       });
+
+      middlewares.push((req, res) => {
+        res.send("Hello World!");
+      });
+
+      return middlewares;
     },
   },
   module: {
@@ -40,7 +56,7 @@ module.exports = {
           // compiles Sass to CSS, using Node Sass by default
         ],
       },
-      { test: /\.(jpg|jpeg|png|gif|mp3|svg|json)$/, use: ["file-loader"] },
+      { test: /\.(jpg|jpeg|png|gif|mp3|svg)$/, use: ["file-loader"] },
     ],
   },
   plugins: [
